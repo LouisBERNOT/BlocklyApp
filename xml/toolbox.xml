@@ -622,9 +622,12 @@
   </category>
 
   <category name="A4 Technologie">
-	<category name="Blocs moteurs" colour="#DD2C00">
-		<block type="picaxe_motors_generic" />
-	 </category>
+    <category name="Blocs moteurs" colour="#DD2C00">
+      <block type="picaxe_motors_generic" />
+    </category>
+    <category name="Portail Coulissant" colour="#DD2C00">
+      <block type="picaxe_portal_output" />
+    </category>
   </category>
 
   

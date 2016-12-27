@@ -72,45 +72,44 @@ generators.getMotorKMR01Code = function (block) {
       return block.getFieldValue(name) == 'TRUE';      
     }
   }
-	
+
   var lows = "", highs = "";
-	var dirMotSelec = block.getFieldValue('checkboxKMR01') == 'TRUE' ;
-	
+
   if (checked("FL"))
   {
-    lows = (dirMotSelec ? "\"B.5\",\"B.6\",\"B.4\"" : "\"B.5\",\"B.7\",\"B.4\"");
-    highs = (dirMotSelec ? "\"B.7\"" : "\"B.6\"") ;
+    lows = "\"B.5\",\"B.6\",\"B.7\"";
+    highs = "\"B.4\"";
   } else if (checked("F"))
   {
-		lows = (dirMotSelec ? "\"B.4\",\"B.6\"" : "\"B.5\",\"B.7\"");
-    highs = (dirMotSelec ? "\"B.5\",\"B.7\"" : "\"B.4\",\"B.6\"") ;
+    lows = "\"B.4\",\"B.6\"";
+    highs = "\"B.5\",\"B.7\"";
   } else if (checked("FR"))
   {
-		lows = (dirMotSelec ? "\"B.7\",\"B.6\",\"B.4\"" : "\"B.5\",\"B.7\",\"B.6\"");
-    highs = (dirMotSelec ? "\"B.5\"" : "\"B.4\"") ;
+    lows = "\"B.4\",\"B.5\",\"B.7\"";
+    highs = "\"B.6\"";
   } else if (checked("R"))
   {
-		lows = (dirMotSelec ? "\"B.4\",\"B.7\"" : "\"B.5\",\"B.6\"");
-    highs = (dirMotSelec ? "\"B.5\",\"B.6\"" : "\"B.4\",\"B.7\"") ;
+    lows = "\"B.4\",\"B.7\"";
+    highs = "\"B.5\",\"B.6\"";
   } else if (checked("STOP"))
   {
     lows = "\"B.4\",\"B.5\",\"B.6\",\"B.7\"";
   } else if (checked("L"))
   {
-		lows = (dirMotSelec ? "\"B.5\",\"B.6\"" : "\"B.4\",\"B.7\"");
-    highs = (dirMotSelec ? "\"B.4\",\"B.7\"" : "\"B.5\",\"B.6\"") ;
+    lows = "\"B.5\",\"B.6\"";
+    highs = "\"B.4\",\"B.7\"";
   } else if (checked("BL"))
   {
-    lows = (dirMotSelec ? "\"B.7\",\"B.5\",\"B.4\"" : "\"B.5\",\"B.4\",\"B.6\"");
-    highs = (dirMotSelec ? "\"B.6\"" : "\"B.7\"") ;
+    lows = "\"B.4\",\"B.6\",\"B.7\"";
+    highs = "\"B.5\"";
   } else if (checked("B"))
   {
-    lows = (dirMotSelec ? "\"B.5\",\"B.7\"" : "\"B.4\",\"B.6\"");
-    highs = (dirMotSelec ? "\"B.4\",\"B.6\"" : "\"B.5\",\"B.7\"") ;
+    lows = "\"B.5\",\"B.7\"";
+    highs = "\"B.4\",\"B.6\"";
   } else if (checked("BR"))
   {
-    lows = (dirMotSelec ? "\"B.7\",\"B.5\",\"B.6\"" : "\"B.7\",\"B.4\",\"B.6\"");
-    highs = (dirMotSelec ? "\"B.4\"" : "\"B.5\"") ;
+    lows = "\"B.4\",\"B.5\",\"B.6\"";
+    highs = "\"B.7\"";
   }
 
   var code = generators.getMotorListCode(lows, highs);
@@ -314,7 +313,7 @@ generators['picaxe_motors_servo'] = function(block) {
 
 //GENERIC MOTOR COMMAND
 
-generators['picaxe_motors_generic'] = function(block) {
+generators['picaxe_portal_output'] = function(block) {
 
   var motorsType = block.getFieldValue('MOTORS_TYPE');
   var code = "";

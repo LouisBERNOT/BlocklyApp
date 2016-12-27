@@ -12,7 +12,7 @@ var blockDefs = BlocklyLib.Blocks;
 var commandScreen =  'bot120'; // Global variable to save the actual motor type of GENERIC MOTORS Block
 
 // MOTOR : Generic
-blockDefs['picaxe_motors_generic'] = {
+blockDefs['picaxe_portal_output'] = {
   
  init: function() {
     
@@ -27,31 +27,18 @@ blockDefs['picaxe_motors_generic'] = {
       })
     };
     
-  function showKMR01Checkbox(visible) {
-    if (visible){
-      thisObj.appendDummyInput("INPUT_KMR01")
-      .appendField(new Blockly.FieldCheckbox("FALSE"), "checkboxKMR01")
-      .appendField("Inverser la polaritee des moteurs ");
-      checkboxKMR01Visible = true; 
-    } else {
-      thisObj.removeInput("INPUT_KMR01");
-      checkboxKMR01Visible = false; 
+    function showKMR01Checkbox(visible) {
+        if (visible){
+            thisObj.appendDummyInput("INPUT_KMR01")
+            .appendField(new Blockly.FieldCheckbox("FALSE"), "checkboxKMR01")
+            .appendField("Inverser la polaritee des moteurs ");
+            checkboxKMR01Visible = true; 
+        } else {
+            thisObj.removeInput("INPUT_KMR01");
+            checkboxKMR01Visible = false; 
+        }
     }
-  }
-
-  function showKMR01Checkbox(visible) {
-    if (visible){
-      thisObj.appendDummyInput("INPUT_KMR01")
-      .appendField(new Blockly.FieldCheckbox("FALSE"), "checkboxKMR01")
-      .appendField("Invert the motor polarity"); //msg.get
-      checkboxKMR01Visible = true; 
-    } else {
-      thisObj.removeInput("INPUT_KMR01");
-      checkboxKMR01Visible = false; 
-    }
-  }
-  
-
+    
     function showSpeed(visible) {
       if (visible){
         thisObj.appendValueInput("LEFT")
@@ -128,39 +115,39 @@ blockDefs['picaxe_motors_generic'] = {
    
     showSpeed(true); //By showing now we reserve toolbox height for later
     showKMR01Checkbox(true);
-    
+        
     this.onchange = function(){
       commandScreen = this.getFieldValue('MOTORS_TYPE');
-    
-    if (commandScreen=='kmr01' || commandScreen=='kmr01s'){
-      if (!checkboxKMR01Visible) showKMR01Checkbox(true);
-    }else{
-      if (checkboxKMR01Visible) showKMR01Checkbox(false);
-    }
-    
-    if (commandScreen=='axe120s' || commandScreen=='kmr01s'){
-        if (speedBot120IsVisible) showSpeedBot120(false);
-        if (!speedIsVisible) showSpeed(true);
-    } else if (commandScreen=='bot120s') {
-        if (speedIsVisible) showSpeed(false);
-        if (!speedBot120IsVisible) showSpeedBot120(true);
-    } else {
-        if (speedIsVisible) showSpeed(false);
-        if (speedBot120IsVisible) showSpeedBot120(false);
-    }
       
-    if (commandScreen=='servo'){
-      if (!blockUtils.canSetWarning(this)) return;
-      var warning;
-      var found = BlocklyLib.mainWorkspace.getAllBlocks().some(function(block){
-      return block.type == "picaxe_motors_servo_setup";
-      });
-      if (!found) warning = msg.get("MISSING_SERVO_SETUP");
-        this.setWarningText(warning);
-    } else {
-      this.setWarningText(null);
+        if (commandScreen=='kmr01' || commandScreen=='kmr01s'){
+            if (!checkboxKMR01Visible) showKMR01Checkbox(true);
+        }else{
+            if (checkboxKMR01Visible) showKMR01Checkbox(false);
+        }
+        
+        if (commandScreen=='axe120s' || commandScreen=='kmr01s'){
+                if (speedBot120IsVisible) showSpeedBot120(false);
+                if (!speedIsVisible) showSpeed(true);
+        } else if (commandScreen=='bot120s') {
+                if (speedIsVisible) showSpeed(false);
+                if (!speedBot120IsVisible) showSpeedBot120(true);
+        } else {
+                if (speedIsVisible) showSpeed(false);
+                if (speedBot120IsVisible) showSpeedBot120(false);
+        }
+      
+        if (commandScreen=='servo'){
+            if (!blockUtils.canSetWarning(this)) return;
+            var warning;
+            var found = BlocklyLib.mainWorkspace.getAllBlocks().some(function(block){
+            return block.type == "picaxe_motors_servo_setup";
+            });
+            if (!found) warning = msg.get("MISSING_SERVO_SETUP");
+                this.setWarningText(warning);
+        } else {
+            this.setWarningText(null);
+        }
     }
-  }
     
     //Make the toolbox default be the last used motor type
     if (this.isInFlyout){
