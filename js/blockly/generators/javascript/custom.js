@@ -72,32 +72,32 @@ generators.getMotorKMR01Code = function (block) {
       return block.getFieldValue(name) == 'TRUE';      
     }
   }
-	
+
   var lows = "", highs = "";
-	var dirMotSelec = block.getFieldValue('checkboxKMR01') == 'TRUE' ;
-	
+  var dirMotSelec = block.getFieldValue('checkboxKMR01') == 'TRUE' ;
+
   if (checked("FL"))
   {
     lows = (dirMotSelec ? "\"B.5\",\"B.6\",\"B.4\"" : "\"B.5\",\"B.7\",\"B.4\"");
     highs = (dirMotSelec ? "\"B.7\"" : "\"B.6\"") ;
   } else if (checked("F"))
   {
-		lows = (dirMotSelec ? "\"B.4\",\"B.6\"" : "\"B.5\",\"B.7\"");
+    lows = (dirMotSelec ? "\"B.4\",\"B.6\"" : "\"B.5\",\"B.7\"");
     highs = (dirMotSelec ? "\"B.5\",\"B.7\"" : "\"B.4\",\"B.6\"") ;
   } else if (checked("FR"))
   {
-		lows = (dirMotSelec ? "\"B.7\",\"B.6\",\"B.4\"" : "\"B.5\",\"B.7\",\"B.6\"");
+    lows = (dirMotSelec ? "\"B.7\",\"B.6\",\"B.4\"" : "\"B.5\",\"B.7\",\"B.6\"");
     highs = (dirMotSelec ? "\"B.5\"" : "\"B.4\"") ;
   } else if (checked("R"))
   {
-		lows = (dirMotSelec ? "\"B.4\",\"B.7\"" : "\"B.5\",\"B.6\"");
+    lows = (dirMotSelec ? "\"B.4\",\"B.7\"" : "\"B.5\",\"B.6\"");
     highs = (dirMotSelec ? "\"B.5\",\"B.6\"" : "\"B.4\",\"B.7\"") ;
   } else if (checked("STOP"))
   {
     lows = "\"B.4\",\"B.5\",\"B.6\",\"B.7\"";
   } else if (checked("L"))
   {
-		lows = (dirMotSelec ? "\"B.5\",\"B.6\"" : "\"B.4\",\"B.7\"");
+    lows = (dirMotSelec ? "\"B.5\",\"B.6\"" : "\"B.4\",\"B.7\"");
     highs = (dirMotSelec ? "\"B.4\",\"B.7\"" : "\"B.5\",\"B.6\"") ;
   } else if (checked("BL"))
   {

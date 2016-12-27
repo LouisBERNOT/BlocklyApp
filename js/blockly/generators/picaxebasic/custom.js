@@ -180,13 +180,13 @@ generators['picaxe_motors_KMR01'] = function(block) {
   var code = "";
   var left = generators.valueToCode(block, 'LEFT', generators.ORDER_ATOMIC);
   var right = generators.valueToCode(block, 'RIGHT', generators.ORDER_ATOMIC);
-	
-	if (block.getFieldValue('checkboxKMR01') == 'TRUE'){
-			var dirMotSelec = ["high" , "low"];
-	}else{
-			var dirMotSelec = ["low" , "high"];
-	}
-	
+
+  if (block.getFieldValue('checkboxKMR01') == 'TRUE'){
+      var dirMotSelec = ["high" , "low"];
+  }else{
+      var dirMotSelec = ["low" , "high"];
+  }
+
   if (left || right) {
     code += "\tlet dirsB = %11110000\n";
     code += "\tlet pinsB = %00000000\n";
