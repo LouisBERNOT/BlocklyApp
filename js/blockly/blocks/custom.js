@@ -398,7 +398,7 @@ blockDefs['picaxe_motors_generic'] = {
 		if (visible){
 			thisObj.appendDummyInput("INPUT_KMR01")
 			.appendField(new Blockly.FieldCheckbox("FALSE"), "checkboxKMR01")
-			.appendField("Inverser la polaritee des moteurs ");
+			.appendField("Invert the motor polarity"); //msg.get
 			checkboxKMR01Visible = true; 
 		} else {
 			thisObj.removeInput("INPUT_KMR01");

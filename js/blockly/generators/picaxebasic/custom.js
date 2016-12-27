@@ -180,14 +180,13 @@ generators['picaxe_motors_KMR01'] = function(block) {
   var code = "";
   var left = generators.valueToCode(block, 'LEFT', generators.ORDER_ATOMIC);
   var right = generators.valueToCode(block, 'RIGHT', generators.ORDER_ATOMIC);
-	var checkboxKMR01 = block.getFieldValue('checkboxKMR01') == 'TRUE';
-	
-	if (checkboxKMR01){
-			var dirMotSelec = ["high" , "low"];
-	}else{
-			var dirMotSelec = ["low" , "high"];
-	}
-	
+
+  if (block.getFieldValue('checkboxKMR01') == 'TRUE'){
+      var dirMotSelec = ["high" , "low"];
+  }else{
+      var dirMotSelec = ["low" , "high"];
+  }
+
   if (left || right) {
     code += "\tlet dirsB = %11110000\n";
     code += "\tlet pinsB = %00000000\n";
@@ -212,7 +211,7 @@ generators['picaxe_motors_KMR01'] = function(block) {
     code += "\tlow B.5,B.4 \n\t" + dirMotSelec[0] + " B.6 : " + dirMotSelec[1] + " B.7 ";
   } else if (checked("F"))
   {
-    code += "\tlow B.4,B.6 : high B.5,B.7";
+    code += "\t" + dirMotSelec[0] + " B.4,B.6 : " + dirMotSelec[1] + " B.5,B.7";
   } else if (checked("FR"))
   {
     code += "\tlow B.6,B.7 \n\t" + dirMotSelec[0] + " B.4 : " + dirMotSelec[1] + " B.5 ";
@@ -230,7 +229,7 @@ generators['picaxe_motors_KMR01'] = function(block) {
     code += "\tlow B.5,B.4 \n\t" + dirMotSelec[0] + " B.7 : " + dirMotSelec[1] + " B.6 ";
   } else if (checked("B"))
   {
-    code += "\tlow B.5,B.7 : high B.4,B.6";
+    code += "\t" + dirMotSelec[0] + " B.5,B.7 : " + dirMotSelec[1] + " B.4,B.6";
   } else if (checked("BR"))
   {
     code += "\tlow B.7,B.6 \n\t" + dirMotSelec[0] + " B.5 : " + dirMotSelec[1] + " B.4 ";
