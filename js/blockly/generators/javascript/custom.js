@@ -72,44 +72,45 @@ generators.getMotorKMR01Code = function (block) {
       return block.getFieldValue(name) == 'TRUE';      
     }
   }
-
+	
   var lows = "", highs = "";
-
+	var dirMotSelec = block.getFieldValue('checkboxKMR01') == 'TRUE' ;
+	
   if (checked("FL"))
   {
-    lows = "\"B.5\",\"B.6\",\"B.7\"";
-    highs = "\"B.4\"";
+    lows = (dirMotSelec ? "\"B.5\",\"B.6\",\"B.4\"" : "\"B.5\",\"B.7\",\"B.4\"");
+    highs = (dirMotSelec ? "\"B.7\"" : "\"B.6\"") ;
   } else if (checked("F"))
   {
-    lows = "\"B.4\",\"B.6\"";
-    highs = "\"B.5\",\"B.7\"";
+		lows = (dirMotSelec ? "\"B.4\",\"B.6\"" : "\"B.5\",\"B.7\"");
+    highs = (dirMotSelec ? "\"B.5\",\"B.7\"" : "\"B.4\",\"B.6\"") ;
   } else if (checked("FR"))
   {
-    lows = "\"B.4\",\"B.5\",\"B.7\"";
-    highs = "\"B.6\"";
+		lows = (dirMotSelec ? "\"B.7\",\"B.6\",\"B.4\"" : "\"B.5\",\"B.7\",\"B.6\"");
+    highs = (dirMotSelec ? "\"B.5\"" : "\"B.4\"") ;
   } else if (checked("R"))
   {
-    lows = "\"B.4\",\"B.7\"";
-    highs = "\"B.5\",\"B.6\"";
+		lows = (dirMotSelec ? "\"B.4\",\"B.7\"" : "\"B.5\",\"B.6\"");
+    highs = (dirMotSelec ? "\"B.5\",\"B.6\"" : "\"B.4\",\"B.7\"") ;
   } else if (checked("STOP"))
   {
     lows = "\"B.4\",\"B.5\",\"B.6\",\"B.7\"";
   } else if (checked("L"))
   {
-    lows = "\"B.5\",\"B.6\"";
-    highs = "\"B.4\",\"B.7\"";
+		lows = (dirMotSelec ? "\"B.5\",\"B.6\"" : "\"B.4\",\"B.7\"");
+    highs = (dirMotSelec ? "\"B.4\",\"B.7\"" : "\"B.5\",\"B.6\"") ;
   } else if (checked("BL"))
   {
-    lows = "\"B.4\",\"B.6\",\"B.7\"";
-    highs = "\"B.5\"";
+    lows = (dirMotSelec ? "\"B.7\",\"B.5\",\"B.4\"" : "\"B.5\",\"B.4\",\"B.6\"");
+    highs = (dirMotSelec ? "\"B.6\"" : "\"B.7\"") ;
   } else if (checked("B"))
   {
-    lows = "\"B.5\",\"B.7\"";
-    highs = "\"B.4\",\"B.6\"";
+    lows = (dirMotSelec ? "\"B.5\",\"B.7\"" : "\"B.4\",\"B.6\"");
+    highs = (dirMotSelec ? "\"B.4\",\"B.6\"" : "\"B.5\",\"B.7\"") ;
   } else if (checked("BR"))
   {
-    lows = "\"B.4\",\"B.5\",\"B.6\"";
-    highs = "\"B.7\"";
+    lows = (dirMotSelec ? "\"B.7\",\"B.5\",\"B.6\"" : "\"B.7\",\"B.4\",\"B.6\"");
+    highs = (dirMotSelec ? "\"B.4\"" : "\"B.5\"") ;
   }
 
   var code = generators.getMotorListCode(lows, highs);
