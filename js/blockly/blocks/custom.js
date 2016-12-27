@@ -11,373 +11,6 @@ define("customBlocks", [
 var blockDefs = BlocklyLib.Blocks;
 var commandScreen =  'bot120'; // Global variable to save the actual motor type of GENERIC MOTORS Block
 
-blockDefs['picaxe_motors_BOT120'] = {
-  init: function() {
-
-    var thisObj = this;
-
-    function image(name) {
-      return new BlocklyLib.FieldImage("assets/" + name + ".png", 16, 16, "*");
-    }
-
-    function changed(newState) {
-      if (newState == "FALSE") return;
-
-      thisObj.inputList.forEach(function(input){
-        input.fieldRow.forEach(function(field){
-          if (field instanceof BlocklyLib.FieldCheckbox && field != thisObj)
-          {
-            field.setValue("FALSE");
-          }
-        });
-      });
-
-    }
-
-    function checkbox(defaultTrue) {
-      return new BlocklyLib.FieldCheckbox(defaultTrue ? "TRUE" : "FALSE", changed);
-    }
-
-    this.setHelpUrl(constants.HELP_URL+"/../commands/stop");
-    this.setColour(colors.MOTORS);
-    this.appendDummyInput()
-        .appendField(image("fl"))
-        .appendField(checkbox(), "FL")
-        .appendField(checkbox(), "F")
-        .appendField(checkbox(), "FR")
-        .appendField(image("fr"))
-        .appendField("BOT120 Microbot");
-    this.appendDummyInput()
-        .appendField(image("l"))
-        .appendField(checkbox(), "L")
-        .appendField(checkbox(true), "STOP")
-        .appendField(checkbox(), "R")
-        .appendField(image("r"));
-    this.appendDummyInput()
-        .appendField(image("bl"))
-        .appendField(checkbox(), "BL")
-        .appendField(checkbox(), "B")
-        .appendField(checkbox(), "BR")
-        .appendField(image("br"))
-        .appendField(msg.get("MOTORS_SET_SPEED"))
-        .appendField(new BlocklyLib.FieldDropdown([
-          [msg.get("MOTORS_NO_CHANGE"), "\t; No speed change;"],
-          [msg.get("MOTORS_FAST"), "\tinput C.5 ; fast"],
-          [msg.get("MOTORS_SLOW"), "\toutput C.5 ; slow"]
-          ]), "SPEED");
-    this.setTooltip('');
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-    this.padIcons = true;
-    this.customContextMenu = contextMenus.customContextMenu;
-    blockUtils.newBlock(this);
-  }
-};
-
-blockDefs['picaxe_motors_AXE120'] = {
-  init: function() {
-
-    var thisObj = this;
-
-    function image(name) {
-      return new BlocklyLib.FieldImage("assets/" + name + ".png", 16, 16, "*");
-    }
-
-    function changed(newState) {
-      if (newState == "FALSE") return;
-
-      thisObj.inputList.forEach(function(input){
-        input.fieldRow.forEach(function(field){
-          if (field instanceof BlocklyLib.FieldCheckbox && field != thisObj)
-          {
-            field.setValue("FALSE");
-          }
-        });
-      });
-
-    }
-
-    function checkbox(defaultTrue) {
-      return new BlocklyLib.FieldCheckbox(defaultTrue ? "TRUE" : "FALSE", changed);
-    }
-
-    this.setHelpUrl(constants.HELP_URL+"/../commands/stop");
-    this.setColour(colors.MOTORS);
-    this.appendDummyInput()
-        .appendField(image("fl"))
-        .appendField(checkbox(), "FL")
-        .appendField(checkbox(), "F")
-        .appendField(checkbox(), "FR")
-        .appendField(image("fr"))
-        .appendField("AXE120");
-    this.appendValueInput("LEFT")
-        .setCheck(constants.TYPES.VAL)
-        .appendField(image("l"))
-        .appendField(checkbox(), "L")
-        .appendField(checkbox(true), "STOP")
-        .appendField(checkbox(), "R")
-        .appendField(image("r"))
-        .appendField(msg.get("MOTORS_LEFT"));
-     this.appendValueInput("RIGHT")
-        .setCheck(constants.TYPES.VAL)
-        .appendField(image("bl"))
-        .appendField(checkbox(), "BL")
-        .appendField(checkbox(), "B")
-        .appendField(checkbox(), "BR")
-        .appendField(image("br"))
-        .appendField(msg.get("MOTORS_RIGHT"));
-    this.setTooltip('');
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-    this.padIcons = true;
-    this.customContextMenu = contextMenus.customContextMenu;
-    blockUtils.newBlock(this);
-  }
-};
-
-blockDefs['picaxe_motors_KMR01'] = {
-  init: function() {
-
-    var thisObj = this;
-
-    function image(name) {
-      return new BlocklyLib.FieldImage("assets/" + name + ".png", 16, 16, "*");
-    }
-
-    function changed(newState) {
-      if (newState == "FALSE") return;
-
-      thisObj.inputList.forEach(function(input){
-        input.fieldRow.forEach(function(field){
-          if (field instanceof BlocklyLib.FieldCheckbox && field != thisObj)
-          {
-            field.setValue("FALSE");
-          }
-        });
-      });
-
-    }
-
-    function checkbox(defaultTrue) {
-      return new BlocklyLib.FieldCheckbox(defaultTrue ? "TRUE" : "FALSE", changed);
-    }
-
-    this.setHelpUrl(constants.HELP_URL+"/../commands/stop");
-    this.setColour(colors.MOTORS);
-    this.appendDummyInput()
-        .appendField(image("fl"))
-        .appendField(checkbox(), "FL")
-        .appendField(checkbox(), "F")
-        .appendField(checkbox(), "FR")
-        .appendField(image("fr"))
-        .appendField("K-MR-01");
-    this.appendValueInput("LEFT")
-        .setCheck(constants.TYPES.VAL)
-        .appendField(image("l"))
-        .appendField(checkbox(), "L")
-        .appendField(checkbox(true), "STOP")
-        .appendField(checkbox(), "R")
-        .appendField(image("r"))
-        .appendField(msg.get("MOTORS_LEFT"));
-     this.appendValueInput("RIGHT")
-        .setCheck(constants.TYPES.VAL)
-        .appendField(image("bl"))
-        .appendField(checkbox(), "BL")
-        .appendField(checkbox(), "B")
-        .appendField(checkbox(), "BR")
-        .appendField(image("br"))
-        .appendField(msg.get("MOTORS_RIGHT"));
-    this.setTooltip('');
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-    this.padIcons = true;
-    this.customContextMenu = contextMenus.customContextMenu;
-    blockUtils.newBlock(this);
-  }
-};
-
-blockDefs['picaxe_motors_CHI035'] = {
-  init: function() {
-
-    var thisObj = this;
-
-    function image(name) {
-      return new BlocklyLib.FieldImage("assets/" + name + ".png", 16, 16, "*");
-    }
-
-    function changed(newState) {
-      if (newState == "FALSE") return;
-
-      thisObj.inputList.forEach(function(input){
-        input.fieldRow.forEach(function(field){
-          if (field instanceof BlocklyLib.FieldCheckbox && field != thisObj)
-          {
-            field.setValue("FALSE");
-          }
-        });
-      });
-
-    }
-
-    function checkbox(defaultTrue) {
-      return new BlocklyLib.FieldCheckbox(defaultTrue ? "TRUE" : "FALSE", changed);
-    }
-
-    this.setHelpUrl(constants.HELP_URL+"/../commands/stop");
-    this.setColour(colors.MOTORS);
-    this.appendDummyInput()
-        .appendField(image("fl"))
-        .appendField(checkbox(), "FL")
-        .appendField(checkbox(), "F")
-        .appendField(checkbox(), "FR")
-        .appendField(image("fr"))
-        .appendField("CHI035");
-    this.appendDummyInput()
-        .appendField(image("l"))
-        .appendField(checkbox(), "L")
-        .appendField(checkbox(true), "STOP")
-        .appendField(checkbox(), "R")
-        .appendField(image("r"))
-        .appendField("AXE020");
-    this.appendDummyInput()
-        .appendField(image("bl"))
-        .appendField(checkbox(), "BL")
-        .appendField(checkbox(), "B")
-        .appendField(checkbox(), "BR")
-        .appendField(image("br"));
-    this.setTooltip('');
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-    this.padIcons = true;
-    this.customContextMenu = contextMenus.customContextMenu;
-    blockUtils.newBlock(this);
-  }
-};
-
-blockDefs['picaxe_motors_AXE023'] = {
-  init: function() {
-
-    var thisObj = this;
-
-    function image(name) {
-      return new BlocklyLib.FieldImage("assets/" + name + ".png", 16, 16, "*");
-    }
-
-    function changed(newState) {
-      if (newState == "FALSE") return;
-
-      thisObj.inputList.forEach(function(input){
-        input.fieldRow.forEach(function(field){
-          if (field instanceof BlocklyLib.FieldCheckbox && field != thisObj)
-          {
-            field.setValue("FALSE");
-          }
-        });
-      });
-
-    }
-
-    function checkbox(defaultTrue) {
-      return new BlocklyLib.FieldCheckbox(defaultTrue ? "TRUE" : "FALSE", changed);
-    }
-
-    this.setHelpUrl(constants.HELP_URL+"/../commands/stop");
-    this.setColour(colors.MOTORS);
-    this.appendDummyInput()
-        .appendField(image("fl"))
-        .appendField(checkbox(), "FL")
-        .appendField(checkbox(), "F")
-        .appendField(checkbox(), "FR")
-        .appendField(image("fr"))
-        .appendField("AXE023");
-    this.appendDummyInput()
-        .appendField(image("l"))
-        .appendField(checkbox(), "L")
-        .appendField(checkbox(true), "STOP")
-        .appendField(checkbox(), "R")
-        .appendField(image("r"));
-    this.appendDummyInput()
-        .appendField(image("bl"))
-        .appendField(checkbox(), "BL")
-        .appendField(checkbox(), "B")
-        .appendField(checkbox(), "BR")
-        .appendField(image("br"));
-    this.setTooltip('');
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-    this.padIcons = true;
-    this.customContextMenu = contextMenus.customContextMenu;
-    blockUtils.newBlock(this);
-  }
-};
-
-blockDefs['picaxe_motors_servo'] = {
-  init: function() {
-
-    var thisObj = this;
-
-    function image(name) {
-      return new BlocklyLib.FieldImage("assets/" + name + ".png", 16, 16, "*");
-    }
-
-    function changed(newState) {
-      if (newState == "FALSE") return;
-
-      thisObj.inputList.forEach(function(input){
-        input.fieldRow.forEach(function(field){
-          if (field instanceof BlocklyLib.FieldCheckbox && field != thisObj)
-          {
-            field.setValue("FALSE");
-          }
-        });
-      });
-
-    }
-
-    function checkbox(defaultTrue) {
-      return new BlocklyLib.FieldCheckbox(defaultTrue ? "TRUE" : "FALSE", changed);
-    }
-
-    this.setHelpUrl(constants.HELP_URL+"/../commands/stop");
-    this.setColour(colors.MOTORS);
-    this.appendDummyInput()
-        .appendField(image("fl"))
-        .appendField(checkbox(), "FL")
-        .appendField(checkbox(), "F")
-        .appendField(checkbox(), "FR")
-        .appendField(image("fr"))
-        .appendField(msg.get("MOTORS_SERVO_MOTOR"));
-    this.appendDummyInput()
-        .appendField(image("l"))
-        .appendField(checkbox(), "L")
-        .appendField(checkbox(true), "STOP")
-        .appendField(checkbox(), "R")
-        .appendField(image("r"));
-    this.appendDummyInput()
-        .appendField(image("bl"))
-        .appendField(checkbox(), "BL")
-        .appendField(checkbox(), "B")
-        .appendField(checkbox(), "BR")
-        .appendField(image("br"));
-    this.setTooltip('');
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-    this.padIcons = true;
-    this.customContextMenu = contextMenus.customContextMenu;
-    blockUtils.newBlock(this);
-  },
-  onchange: function() {
-    if (!blockUtils.canSetWarning(this)) return;
-    var warning;
-    var found = BlocklyLib.mainWorkspace.getAllBlocks().some(function(block){
-      return block.type == "picaxe_motors_servo_setup";
-    });
-    if (!found) warning = msg.get("MISSING_SERVO_SETUP");
-    this.setWarningText(warning);
-  }
-};
-
-    
 // MOTOR : Generic
 blockDefs['picaxe_motors_generic'] = {
   
@@ -385,7 +18,7 @@ blockDefs['picaxe_motors_generic'] = {
     
     var thisObj = this;
     var speedIsVisible = false;
-		var checkboxKMR01Visible = false; 
+    var checkboxKMR01Visible = false; 
     var speedBot120IsVisible = false;
     
     function image(name){
@@ -394,18 +27,18 @@ blockDefs['picaxe_motors_generic'] = {
       })
     };
     
-	function showKMR01Checkbox(visible) {
-		if (visible){
-			thisObj.appendDummyInput("INPUT_KMR01")
-			.appendField(new Blockly.FieldCheckbox("FALSE"), "checkboxKMR01")
-			.appendField("Inverser la polaritee des moteurs ");
-			checkboxKMR01Visible = true; 
-		} else {
-			thisObj.removeInput("INPUT_KMR01");
-			checkboxKMR01Visible = false; 
-		}
-	}
-	
+  function showKMR01Checkbox(visible) {
+    if (visible){
+      thisObj.appendDummyInput("INPUT_KMR01")
+      .appendField(new Blockly.FieldCheckbox("FALSE"), "checkboxKMR01")
+      .appendField("Inverser la polaritee des moteurs ");
+      checkboxKMR01Visible = true; 
+    } else {
+      thisObj.removeInput("INPUT_KMR01");
+      checkboxKMR01Visible = false; 
+    }
+  }
+  
     function showSpeed(visible) {
       if (visible){
         thisObj.appendValueInput("LEFT")
@@ -482,39 +115,39 @@ blockDefs['picaxe_motors_generic'] = {
    
     showSpeed(true); //By showing now we reserve toolbox height for later
     showKMR01Checkbox(true);
-		
+    
     this.onchange = function(){
       commandScreen = this.getFieldValue('MOTORS_TYPE');
-	  
-		if (commandScreen=='kmr01' || commandScreen=='kmr01s'){
-			if (!checkboxKMR01Visible) showKMR01Checkbox(true);
-		}else{
-			if (checkboxKMR01Visible) showKMR01Checkbox(false);
-		}
-		
-		if (commandScreen=='axe120s' || commandScreen=='kmr01s'){
-				if (speedBot120IsVisible) showSpeedBot120(false);
-				if (!speedIsVisible) showSpeed(true);
-		} else if (commandScreen=='bot120s') {
-				if (speedIsVisible) showSpeed(false);
-				if (!speedBot120IsVisible) showSpeedBot120(true);
-		} else {
-				if (speedIsVisible) showSpeed(false);
-				if (speedBot120IsVisible) showSpeedBot120(false);
-		}
+    
+    if (commandScreen=='kmr01' || commandScreen=='kmr01s'){
+      if (!checkboxKMR01Visible) showKMR01Checkbox(true);
+    }else{
+      if (checkboxKMR01Visible) showKMR01Checkbox(false);
+    }
+    
+    if (commandScreen=='axe120s' || commandScreen=='kmr01s'){
+        if (speedBot120IsVisible) showSpeedBot120(false);
+        if (!speedIsVisible) showSpeed(true);
+    } else if (commandScreen=='bot120s') {
+        if (speedIsVisible) showSpeed(false);
+        if (!speedBot120IsVisible) showSpeedBot120(true);
+    } else {
+        if (speedIsVisible) showSpeed(false);
+        if (speedBot120IsVisible) showSpeedBot120(false);
+    }
       
-		if (commandScreen=='servo'){
-			if (!blockUtils.canSetWarning(this)) return;
-			var warning;
-			var found = BlocklyLib.mainWorkspace.getAllBlocks().some(function(block){
-			return block.type == "picaxe_motors_servo_setup";
-			});
-			if (!found) warning = msg.get("MISSING_SERVO_SETUP");
-				this.setWarningText(warning);
-		} else {
-			this.setWarningText(null);
-		}
-	}
+    if (commandScreen=='servo'){
+      if (!blockUtils.canSetWarning(this)) return;
+      var warning;
+      var found = BlocklyLib.mainWorkspace.getAllBlocks().some(function(block){
+      return block.type == "picaxe_motors_servo_setup";
+      });
+      if (!found) warning = msg.get("MISSING_SERVO_SETUP");
+        this.setWarningText(warning);
+    } else {
+      this.setWarningText(null);
+    }
+  }
     
     //Make the toolbox default be the last used motor type
     if (this.isInFlyout){
@@ -530,48 +163,4 @@ blockDefs['picaxe_motors_generic'] = {
     blockUtils.newBlock(this);
   } 
 };
-
-
-
-
-// MOTOR : SERVO SETUP
-
-blockDefs['picaxe_motors_servo_setup'] = {
-  init: function() {
-    this.setHelpUrl(constants.HELP_URL+"/../commands/servo");
-    this.setColour(colors.OUTPUT);
-    this.appendDummyInput()
-        .appendField(msg.get("MOTORS_SERVO_A"))
-        .appendField(new BlocklyLib.FieldDropdown(io.makeServoPinList()), "PIN");
-    this.appendValueInput("STOPA")
-        .setCheck(constants.TYPES.VAL)
-        .setAlign(BlocklyLib.ALIGN_RIGHT)
-        .appendField(msg.get("MOTORS_STOP_A"));
-    this.appendValueInput("OFFSETA")
-        .setCheck(constants.TYPES.VAL)
-        .setAlign(BlocklyLib.ALIGN_RIGHT)
-        .appendField(msg.get("MOTORS_OFFSET_A"));
-    this.appendDummyInput()
-        .appendField(msg.get("MOTORS_SERVO_B"))
-        .appendField(new BlocklyLib.FieldDropdown(io.makeServoPinList()), "PIN2");
-    this.appendValueInput("STOPB")
-        .setCheck(constants.TYPES.VAL)
-        .setAlign(BlocklyLib.ALIGN_RIGHT)
-        .appendField(msg.get("MOTORS_STOP_B"));
-    this.appendValueInput("OFFSETB")
-        .setCheck(constants.TYPES.VAL)
-        .setAlign(BlocklyLib.ALIGN_RIGHT)
-        .appendField(msg.get("MOTORS_OFFSET_B"));
-    this.setInputsInline(false);
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-    this.setTooltip('');
-    this.customContextMenu = contextMenus.customContextMenu;
-    this.onchange = blockUtils.checkInputs;
-    blockUtils.newBlock(this);
-  },
-  servoPins: ["PIN", "PIN2"]
-};
-
-
 });
