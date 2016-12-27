@@ -26,18 +26,6 @@ blockDefs['picaxe_motors_generic'] = {
         thisObj.setFieldValue(name.toUpperCase(),'COMMAND_MOTORS');
       })
     };
-    
-  function showKMR01Checkbox(visible) {
-    if (visible){
-      thisObj.appendDummyInput("INPUT_KMR01")
-      .appendField(new Blockly.FieldCheckbox("FALSE"), "checkboxKMR01")
-      .appendField("Inverser la polaritee des moteurs ");
-      checkboxKMR01Visible = true; 
-    } else {
-      thisObj.removeInput("INPUT_KMR01");
-      checkboxKMR01Visible = false; 
-    }
-  }
 
   function showKMR01Checkbox(visible) {
     if (visible){
@@ -51,7 +39,6 @@ blockDefs['picaxe_motors_generic'] = {
     }
   }
   
-
     function showSpeed(visible) {
       if (visible){
         thisObj.appendValueInput("LEFT")
@@ -69,7 +56,7 @@ blockDefs['picaxe_motors_generic'] = {
         speedIsVisible = false;
       }
     }
-    
+
     function showSpeedBot120(visible) {
       if (visible){
         thisObj.appendDummyInput("SPEED")
