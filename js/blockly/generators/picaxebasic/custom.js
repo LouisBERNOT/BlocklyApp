@@ -209,13 +209,13 @@ generators['picaxe_motors_KMR01'] = function(block) {
 
   if (checked("FL"))
   {
-    code += "\t" + dirMotSelec[0] + " B.5,B.6,B.7 : " + dirMotSelec[1] + " B.4";
+    code += "\tlow B.5,B.4 \n\t" + dirMotSelec[0] + " B.6 : " + dirMotSelec[1] + " B.7 ";
   } else if (checked("F"))
   {
     code += "\tlow B.4,B.6 : high B.5,B.7";
   } else if (checked("FR"))
   {
-    code += "\tB.6,B.7 \t" + dirMotSelec[0] + " B.4 : " + dirMotSelec[1] + " B.5 'FR";
+    code += "\tlow B.6,B.7 \n\t" + dirMotSelec[0] + " B.4 : " + dirMotSelec[1] + " B.5 ";
   } else if (checked("L"))
   {
     code += "\t" + dirMotSelec[0] + " B.5,B.6 : " + dirMotSelec[1] + " B.4,B.7";
@@ -227,13 +227,13 @@ generators['picaxe_motors_KMR01'] = function(block) {
     code += "\t" + dirMotSelec[0] + " B.4,B.7 : " + dirMotSelec[1] + " B.5,B.6";
   } else if (checked("BL"))
   {
-    code += "\t" + dirMotSelec[0] + " B.4,B.6,B.7 : " + dirMotSelec[1] + " B.5";
+    code += "\tlow B.5,B.4 \n\t" + dirMotSelec[0] + " B.7 : " + dirMotSelec[1] + " B.6 ";
   } else if (checked("B"))
   {
     code += "\tlow B.5,B.7 : high B.4,B.6";
   } else if (checked("BR"))
   {
-    code += "\t" + dirMotSelec[0] + " B.4,B.5,B.6 : " + dirMotSelec[1] + " B.7";
+    code += "\tlow B.7,B.6 \n\t" + dirMotSelec[0] + " B.5 : " + dirMotSelec[1] + " B.4 ";
   }
 
   code += "\n";
