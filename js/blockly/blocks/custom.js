@@ -11,6 +11,132 @@ define("customBlocks", [
 var blockDefs = BlocklyLib.Blocks;
 var commandScreen =  'bot120'; // Global variable to save the actual motor type of GENERIC MOTORS Block
 
+//-----------------------------------------------------------------------\\LOUPIOT_ROBOT//---------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+var color_LOUPIOT = "#F44336" ;
+
+//MOTOR SPEED : Loupiot
+blockDefs['picaxe_motors_speed_loupiot'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(msg.get("MOTORS_SPEED_LOUPIOT1"))
+        .appendField(new Blockly.FieldDropdown([["left and right", "LR"], ["right", "R"], ["left", "L"]]), "mot_choice")
+        .appendField(msg.get("MOTORS_SPEED_LOUPIOT2"));
+    this.appendValueInput("Loupiot_speed_value")
+    
+    /* this.onchange = function() {
+      var test = false ;
+      var blocStart = this ;
+      var block = blocStart ; 
+      while (block){
+        if (block.type == "picaxe_motors_dir_loupiot"){
+          test = true ; break;
+        }
+        block = block.getNextBlock();
+      }
+      if (!test){
+        block = blocStart ;
+        while (block){
+          if (block.type == "picaxe_motors_dir_loupiot"){
+          test = true ; break;
+          }
+          block = block.getParent();
+        }
+      }
+      if (test){
+        this.setWarningText(null);
+      }else{
+        this.setWarningText(msg.get("MOTORS_WARNING_LOUPIOT"));
+      }
+    } */
+    
+    this.setCommentText("Speed motor need to be between 0 and 400 to work good ");
+    this.setInputsInline(true);
+    this.setHelpUrl("http://www.example.com/command-details");
+    this.setColour(color_LOUPIOT);
+    this.setPreviousStatement(true, "null");
+    this.setNextStatement(true, "null");
+    this.padIcons = true;
+    blockUtils.newBlock(this);
+  }
+};
+
+//MOTOR DIR : Loupiot
+blockDefs['picaxe_motors_dir_loupiot'] = {
+  init: function() {
+    
+    var thisObj = this;
+    
+    function image(name){
+      return new BlocklyLib.FieldImage("assets/" + name + ".png", 16, 16, "*", function() {
+        thisObj.setFieldValue(name.toUpperCase(),'COMMAND_MOTORS');
+      })
+    };
+    this.appendDummyInput()
+        .appendField(image("fl"))
+        .appendField(image("f"))
+        .appendField(image("fr"))
+        .appendField(msg.get("MOTORS_DIRECTION_LOUPIOT"));
+    this.appendDummyInput()
+        .appendField(image("l"))
+        .appendField(image("stop"))
+        .appendField(image("r"))
+        .appendField(new BlocklyLib.FieldDropdown([
+          [msg.get("MOTORS_DIRECTION_FORWARD_LEFT"),"FL"],
+          [msg.get("MOTORS_DIRECTION_FORWARD"),"F"],
+          [msg.get("MOTORS_DIRECTION_FORWARD_RIGHT"),"FR"],
+          [msg.get("MOTORS_DIRECTION_LEFT"),"L"],
+          [msg.get("MOTORS_DIRECTION_STOP"),"STOP"],
+          [msg.get("MOTORS_DIRECTION_RIGHT"),"R"],
+          [msg.get("MOTORS_DIRECTION_BACKWARD_LEFT"),"BL"],
+          [msg.get("MOTORS_DIRECTION_BACKWARD"),"B"],
+          [msg.get("MOTORS_DIRECTION_BACKWARD_RIGHT"),"BR"],
+          ]), "COMMAND_MOTORS_LOUPIOT") ;
+    this.appendDummyInput("dropdown")
+        .appendField(image("bl"))
+        .appendField(image("b"))
+        .appendField(image("br"));
+        
+    /* this.onchange = function() {
+      var test = false ;
+      var blocStart = this ;
+      var block = blocStart ; 
+      while (block){
+        if (block.type == "picaxe_motors_speed_loupiot"){
+          test = true ; break;
+        }
+        block = block.getNextBlock();
+      }
+      if (!test){
+        block = blocStart ;
+        while (block){
+          if (block.type == "picaxe_motors_speed_loupiot"){
+          test = true ; break;
+          }
+          block = block.getParent();
+        }
+      }
+      if (test){
+        this.setWarningText(null);
+      }else{
+        this.setWarningText(msg.get("MOTORS_WARNING_LOUPIOT"));
+      }
+    } */
+    
+    this.setHelpUrl("http://www.example.com/command-details");
+    this.setColour(color_LOUPIOT);
+    this.setPreviousStatement(true, "null");
+    this.setNextStatement(true, "null");
+    this.setInputsInline(false);
+    this.padIcons = true;
+    blockUtils.newBlock(this);
+  }
+};
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
 // MOTOR : Generic
 blockDefs['picaxe_motors_generic'] = {
   
@@ -119,34 +245,34 @@ blockDefs['picaxe_motors_generic'] = {
     this.onchange = function(){
       commandScreen = this.getFieldValue('MOTORS_TYPE');
     
-    if (commandScreen=='kmr01' || commandScreen=='kmr01s'){
-      if (!checkboxKMR01Visible) showKMR01Checkbox(true);
-    }else{
-      if (checkboxKMR01Visible) showKMR01Checkbox(false);
-    }
-    
-    if (commandScreen=='axe120s' || commandScreen=='kmr01s'){
-        if (speedBot120IsVisible) showSpeedBot120(false);
-        if (!speedIsVisible) showSpeed(true);
-    } else if (commandScreen=='bot120s') {
-        if (speedIsVisible) showSpeed(false);
-        if (!speedBot120IsVisible) showSpeedBot120(true);
-    } else {
-        if (speedIsVisible) showSpeed(false);
-        if (speedBot120IsVisible) showSpeedBot120(false);
-    }
+      if (commandScreen=='kmr01' || commandScreen=='kmr01s'){
+        if (!checkboxKMR01Visible) showKMR01Checkbox(true);
+      }else{
+        if (checkboxKMR01Visible) showKMR01Checkbox(false);
+      }
       
-    if (commandScreen=='servo'){
-      if (!blockUtils.canSetWarning(this)) return;
-      var warning;
-      var found = BlocklyLib.mainWorkspace.getAllBlocks().some(function(block){
-      return block.type == "picaxe_motors_servo_setup";
-      });
-      if (!found) warning = msg.get("MISSING_SERVO_SETUP");
-        this.setWarningText(warning);
-    } else {
-      this.setWarningText(null);
-    }
+      if (commandScreen=='axe120s' || commandScreen=='kmr01s'){
+          if (speedBot120IsVisible) showSpeedBot120(false);
+          if (!speedIsVisible) showSpeed(true);
+      } else if (commandScreen=='bot120s') {
+          if (speedIsVisible) showSpeed(false);
+          if (!speedBot120IsVisible) showSpeedBot120(true);
+      } else {
+          if (speedIsVisible) showSpeed(false);
+          if (speedBot120IsVisible) showSpeedBot120(false);
+      }
+        
+      if (commandScreen=='servo'){
+        if (!blockUtils.canSetWarning(this)) return;
+        var warning;
+        var found = BlocklyLib.mainWorkspace.getAllBlocks().some(function(block){
+        return block.type == "picaxe_motors_servo_setup";
+        });
+        if (!found) warning = msg.get("MISSING_SERVO_SETUP");
+          this.setWarningText(warning);
+      } else {
+        this.setWarningText(null);
+      }
   }
     
     //Make the toolbox default be the last used motor type

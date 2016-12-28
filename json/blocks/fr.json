@@ -178,6 +178,10 @@
 "PROCEDURES_HIGHLIGHT_DEF": "définition de la procédure de mise en surbrillance",
 "PROCEDURES_CREATE_DO": "Créer '%1'",
 
+"MOTORS_WARNING_LOUPIOT":"Attention: la direction et la vitesse des moteurs doit être réglée au moins une fois",
+"MOTORS_SPEED_LOUPIOT1":"Loupiot vitesse moteur",
+"MOTORS_SPEED_LOUPIOT2":"a",
+"MOTORS_DIRECTION_LOUPIOT": "Direction moteur loupiot a",
 "MOTORS_MOTOR": "moteur",
 "MOTORS_SET_SPEED": "configurer la vitesse",
 "MOTORS_NO_CHANGE": "changement",

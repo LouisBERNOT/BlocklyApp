@@ -1,7 +1,24 @@
 define("customJavascript", [
   "./blockly/generators/javascript"
 ],function(generators){
-    
+
+//-----------------------------------------------------------------------\\LOUPIOT_ROBOT//---------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//MOTOR SPEED : Loupiot
+generators['picaxe_motors_speed_loupiot'] = function(block) {
+  var code = "";
+  return generators.wrapOutput(block, code);
+};
+//MOTOR DIR : Loupiot
+generators['picaxe_motors_dir_loupiot'] = function(block) {
+  var code = "";
+  return generators.wrapOutput(block, code);
+};
+
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 generators.getMotorListCode = function(lows, highs) {
   var code = "";
   if (lows.length > 0) code +="picaxe.pin.write([" + lows.split(",") + "],0);\n";

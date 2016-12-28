@@ -179,6 +179,10 @@
 "PROCEDURES_HIGHLIGHT_DEF": "Resaltar la definición del procedimiento",
 "PROCEDURES_CREATE_DO": "Crear '%1'",
 
+"MOTORS_WARNING_LOUPIOT":"Warning: speed and direction of motor need to be set at least once ",
+"MOTORS_SPEED_LOUPIOT1":"Loupiot speed motor",
+"MOTORS_SPEED_LOUPIOT2":"to",
+"MOTORS_DIRECTION_LOUPIOT": "Set motor direction at",
 "MOTORS_MOTOR": "motor",
 "MOTORS_SET_SPEED": "fijar velocidad",
 "MOTORS_NO_CHANGE": "cambiar",

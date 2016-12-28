@@ -2,6 +2,44 @@ define("customPicaxeBasic", [
 "./blockly/generators/picaxebasic"
 ],function(generators){
 
+//-----------------------------------------------------------------------\\LOUPIOT_ROBOT//---------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//MOTOR SPEED : Loupiot
+generators['picaxe_motors_speed_loupiot'] = function(block) {
+  
+  var speed = generators.valueToCode(block, 'Loupiot_speed_value', generators.ORDER_ATOMIC) || 0;
+  var motorDir = {
+    'LR':'\tpwmout B.1,100,' + speed + '\n\tpwmout C.3,100,' + speed,
+    'R':'\tpwmout B.1,100,' + speed,
+    'L':'\tpwmout C.3,100,' + speed,
+  };
+  var code = motorDir[block.getFieldValue('mot_choice')] + '\n\tpause 10\n';
+  
+  return generators.wrapOutput(block, code);
+};
+//MOTOR DIR : Loupiot
+
+generators['picaxe_motors_dir_loupiot'] = function(block) {
+  var commandMotor = {
+    "FL"   : "\tlow B.3,B.2,C.2 : high C.1",
+    "F"    : "\tlow B.3,C.2 : high C.1,B.2",
+    "B"    : "\tlow C.1,B.2 : high B.3,C.2",
+    "BL"   : "\tlow B.3,B.2,C.1 : high C.2",
+    "FR"   : "\tlow B.3,C.2,C.1 : high B.2",
+    "L"    : "\tlow B.2,C.2 : high C.1,B.3",
+    "STOP" : "\thigh C.1,B.3,B.2,C.2",
+    "R"    : "\tlow C.1,B.3 : high B.2,C.2",
+    "BR"   : "\tlow B.2,C.2,C.1 : high B.3",
+  };
+  var code = commandMotor[block.getFieldValue('COMMAND_MOTORS_LOUPIOT')] + '\n';
+  
+  return generators.wrapOutput(block, code);
+};
+
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 generators['picaxe_motors_BOT120'] = function(block) {
 
   function checked(name) {
@@ -334,9 +372,7 @@ generators['picaxe_motors_servo'] = function(block) {
   return generators.wrapOutput(block, code);
 };
 
-
 // MOTORS : GENERIC
-
 generators['picaxe_motors_generic'] = function(block) {
 
   var motorsType = block.getFieldValue('MOTORS_TYPE');

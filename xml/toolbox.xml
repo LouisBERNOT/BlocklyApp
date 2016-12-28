@@ -626,7 +626,11 @@
       <block type="picaxe_motors_generic" />
     </category>
     <category name="Portail Coulissant" colour="#DD2C00">
-      <block type="picaxe_portal_output" />
+     <!--  <block type="picaxe_portal_output" /> -->
+    </category>
+    <category name="Robot Loupiot" colour="#DD2C00">
+        <block type="picaxe_motors_speed_loupiot" />
+        <block type="picaxe_motors_dir_loupiot" />
     </category>
   </category>
 

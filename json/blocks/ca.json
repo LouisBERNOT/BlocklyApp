@@ -179,6 +179,10 @@
 "PROCEDURES_HIGHLIGHT_DEF": "Destaca la definició del procedimient",
 "PROCEDURES_CREATE_DO": "Crea '%1'",
 
+"MOTORS_WARNING_LOUPIOT":"Warning: speed and direction of motor need to be set at least once ",
+"MOTORS_SPEED_LOUPIOT1":"Loupiot speed motor",
+"MOTORS_SPEED_LOUPIOT2":"to",
+"MOTORS_DIRECTION_LOUPIOT": "Set motor direction at",
 "MOTORS_MOTOR": "motor",
 "MOTORS_SET_SPEED": "velocitat",
 "MOTORS_NO_CHANGE": "canvia",
