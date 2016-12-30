@@ -620,17 +620,77 @@
     <!-- ADVANCED : #SLOT [SLOT] -->
     <block type="picaxe_advanced_slot"></block>
   </category>
-
+  <sep></sep>
+  <sep></sep>
   <category name="A4 Technologie">
-    <category name="Blocs moteurs" colour="#DD2C00">
-      <block type="picaxe_motors_generic" />
-    </category>
-    <category name="Portail Coulissant" colour="#DD2C00">
-     <!--  <block type="picaxe_portal_output" /> -->
+    <category name="Portail Coulissant" colour="#FFAB40">
+        <block type="picaxe_picture_portal" />
+        <block type="picaxe_wiring_portal" />
+        <block type="picaxe_motor_portal" />
+        <block type="picaxe_led_portal" />
+        <block type="picaxe_senssor_if_portal" />
+        <block type="picaxe_senssor_if_else_portal" />
+        <block type="picaxe_senssor_waiting_portal" />
+        <block type="picaxe_blth_rx_portail">
+          <value name="varBTLH">
+            <block type="picaxe_vals_var">
+              <field name="VAR">varA</field>
+            </block>
+          </value>
+        </block>
+        <block type="picaxe_blth_tx_portail" >
+          <value name="varBTLH">
+            <block type="picaxe_vals_var">
+              <field name="VAR">varA</field>
+            </block>
+          </value>
+        </block>
     </category>
     <category name="Robot Loupiot" colour="#DD2C00">
-        <block type="picaxe_motors_speed_loupiot" />
+        <block type="picaxe_picture_loupiot" />
+        <block type="picaxe_motors_speed_loupiot">
+          <value name="Loupiot_speed_value">
+            <block type="picaxe_vals_val" id="36">
+              <field name="VALUE">250</field>
+            </block>
+          </value>
+        </block>
         <block type="picaxe_motors_dir_loupiot" />
+        <block type="picaxe_blinker_loupiot" />
+        <block type="picaxe_line_senssor_if_loupiot" />
+        <block type="picaxe_line_senssor_if_else_loupiot" />
+        <block type="picaxe_ultrason_loupiot" >
+          <value name="loupiot_ultrason">
+            <block type="picaxe_vals_var">
+              <field name="VAR">varA</field>
+            </block>
+          </value>
+        </block>
+        <block type="picaxe_voltage_loupiot" >
+          <value name="loupiot_voltage">
+            <block type="picaxe_vals_var">
+              <field name="VAR">varA</field>
+            </block>
+          </value>
+        </block>
+        <block type="picaxe_blth_rx_loupiot">
+          <value name="varBTLH">
+            <block type="picaxe_vals_var">
+              <field name="VAR">varA</field>
+            </block>
+          </value>
+        </block>
+        <block type="picaxe_blth_tx_loupiot" >
+          <value name="varBTLH">
+            <block type="picaxe_vals_var">
+              <field name="VAR">varA</field>
+            </block>
+          </value>
+        </block>
+    </category>
+    <category name="MiniRobot" colour="#5BA5A5">
+      <block type="picaxe_picture_kmr" />
+      <block type="picaxe_motors_generic" />
     </category>
   </category>
 

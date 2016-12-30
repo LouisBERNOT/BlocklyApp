@@ -7,17 +7,168 @@ define("customJavascript", [
 
 //MOTOR SPEED : Loupiot
 generators['picaxe_motors_speed_loupiot'] = function(block) {
-  var code = "";
-  return generators.wrapOutput(block, code);
-};
-//MOTOR DIR : Loupiot
-generators['picaxe_motors_dir_loupiot'] = function(block) {
-  var code = "";
+  var speed = generators.valueToCode(block, 'Loupiot_speed_value', generators.ORDER_ATOMIC) || 0;
+  var motorDir = {
+    'LR':"picaxe.pwm.setup(\"B.1\",100," + speed + ");\npicaxe.pwm.setup(\"C.3\",100," + speed + ");",
+    'R':"picaxe.pwm.setup(\"B.1\",100," + speed + ");",
+    'L':"picaxe.pwm.setup(\"C.3\",100," + speed + ");",};
+  var code = motorDir[block.getFieldValue('mot_choice')]+ '\n';;
   return generators.wrapOutput(block, code);
 };
 
-//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//MOTOR DIR : Loupiot
+generators['picaxe_motors_dir_loupiot'] = function(block) {
+  var commandMotor = {
+    "FL"   : "picaxe.pin.write([\"B.3\",\"B.2\",\"C.2\"],0);\npicaxe.pin.write([\"C.1\"],1);",
+    "F"    : "picaxe.pin.write([\"B.3\",\"C.2\"],0);\npicaxe.pin.write([\"B.2\",\"C.1\"],1);",
+    "B"    : "picaxe.pin.write([\"B.2\",\"C.1\"],0);\npicaxe.pin.write([\"B.3\",\"C.2\"],1);",
+    "BL"   : "picaxe.pin.write([\"B.3\",\"B.2\",\"C.1\"],0);\npicaxe.pin.write([\"C.2\"],1);",
+    "FR"   : "picaxe.pin.write([\"B.3\",\"C.2\",\"C.1\"],0);\npicaxe.pin.write([\"B.2\"],1);",
+    "L"    : "picaxe.pin.write([\"B.2\",\"C.2\"],0);\npicaxe.pin.write([\"B.3\",\"C.1\"],1);",
+    "STOP" : "picaxe.pin.write([\"B.3\",\"C.1\",\"B.2\",\"C.2\"],1);",
+    "R"    : "picaxe.pin.write([\"B.3\",\"C.1\"],0);\npicaxe.pin.write([\"B.2\",\"C.2\"],1);",
+    "BR"   : "picaxe.pin.write([\"B.2\",\"C.2\",\"C.1\"],0);\npicaxe.pin.write([\"B.3\"],1);",};
+  var code = commandMotor[block.getFieldValue('COMMAND_MOTORS_LOUPIOT')] + '\n';
+  return generators.wrapOutput(block, code);
+};
+
+//LINE SENSSOR IF: Loupiot
+generators['picaxe_line_senssor_if_loupiot'] = function(block) {
+    var code = generators['picaxe_line_senssor_general'](block) ;
+    return generators.wrapOutput(block, code);
+};
+
+//LINE SENSSOR IF / ELSE: Loupiot
+generators['picaxe_line_senssor_if_else_loupiot'] = function(block) {
+    var code = generators['picaxe_line_senssor_general'](block) ;
+    return generators.wrapOutput(block, code);
+};
+
+//LINE SENSSOR IF AND ELSE GENERAL : Loupiot
+generators['picaxe_line_senssor_general'] = function(block) {
+    var IRSenssor = {
+        "IR_R"  :   "C.4",
+        "IR_C"  :   "C.5",
+        "IR_L"  :   "C.6",};
+    var IRSenssorState = {
+        "HIGH"  :   "1",
+        "LOW"   :   "0",};
+    var codeIf = generators.statementToCode(block, 'DO_IF') || "Error : block(s) needed \n" ;
+    var codeElse = "";
+    var code ; 
+    
+    if (block.getInput('DO_ELSE')){
+    codeElse = "}else{\n" + generators.statementToCode(block, 'DO_ELSE')|| "Error : block(s) needed \n";
+    }
+    
+    code = "if (picaxe.pin.read(\"" 
+      + IRSenssor[block.getFieldValue('IR_Senssor')] 
+      + "\" == " 
+      + IRSenssorState[block.getFieldValue('IR_Senssor_State')] 
+      + " ){\n" 
+      + codeIf + codeElse  ; 
+    return code + "}\n" ; 
+};
+
+//BLUETOOTH RX: Loupiot
+generators['picaxe_blth_rx_loupiot'] = function(block) {
+    var code = "";
+    return generators.wrapOutput(block, code);
+};
+
+//BLUETOOTH TX: Loupiot
+generators['picaxe_blth_tx_loupiot'] = function(block) {
+    var code = "";
+    return generators.wrapOutput(block, code);
+};
+
+//BLINKER : Loupiot
+generators['picaxe_blinker_loupiot'] = function(block) {
+    var code = "";
+    return generators.wrapOutput(block, code);
+};
+
+//READ VOLTAGE : Loupiot
+generators['picaxe_voltage_loupiot'] = function(block) {
+    var code = "";
+    return generators.wrapOutput(block, code);
+};
+
+//READ ULTRASON : Loupiot
+generators['picaxe_ultrason_loupiot'] = function(block) {
+    var code = "";
+    return generators.wrapOutput(block, code);
+};
+
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------\\END ROBOT LOUPIOT //---------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------\\PORTAL_C AUTOPROG //--------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//MOTOR CONTROL: portal
+generators['picaxe_motor_portal'] = function(block) {
+    var code = "";
+    return generators.wrapOutput(block, code);
+};
+
+//SENSSOR IF : Portal
+generators['picaxe_senssor_if_portal'] = function(block) {
+    var code = "";
+    return generators.wrapOutput(block, code);
+};
+
+//SENSSOR IF / ELSE: Portal
+generators['picaxe_senssor_if_else_portal'] = function(block) {
+    var code = "";
+    return generators.wrapOutput(block, code);
+};
+
+//SENSSOR WAITING : Portal
+generators['picaxe_senssor_waiting_portal'] = function(block) {
+    var code = "" ;
+    return generators.wrapOutput(block, code);
+};
+
+//LED CONTROL: portal
+generators['picaxe_led_portal'] = function(block) {
+    var code = "" ;
+    return generators.wrapOutput(block, code);
+};
+
+//BLUETOOTH RX: Portail
+generators['picaxe_blth_rx_portail'] = function(block) {
+    var code = "" ;
+    return generators.wrapOutput(block, code);
+};
+
+//BLUETOOTH TX: Portail
+generators['picaxe_blth_tx_portail'] = function(block) {
+    var code = "" ;
+    return generators.wrapOutput(block, code);
+};
+
+//LED CONTROL: portal
+generators['picaxe_led_portal'] = function(block) {
+    var code = "" ;
+    return generators.wrapOutput(block, code);
+};
+
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------\\  END PORTAL_C AUTOPROG  //--------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------\\  MINI ROBOT  //-------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
 
 generators.getMotorListCode = function(lows, highs) {
   var code = "";
